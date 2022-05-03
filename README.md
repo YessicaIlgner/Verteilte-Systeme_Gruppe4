@@ -4,6 +4,8 @@ Ilgner, Yessica (8043789)
 Wowerath, Steven (4941083)
 Weßbecher, Aaron (4050011)
 
+WICHTIG: Wir haben dieses Projekt wie in der Aufgabe gefordert zusammen erledigt. Docker funktonierte leider bei Steven und Aaron nicht. Wir erledigten trotzdem alles in Absprache. Aaron konnte leider nicht commiten, da er das Projekt gegabelt hat :D 
+
 ## Beschreibung
 
 Die API soll als eine Schnittstelle für lokale Hotels genutzt werden. Dabei werden alle relevanten Informationen über ein Hotel gespeichert. 
@@ -175,3 +177,6 @@ Response:
 }
 
 ``` 
+
+
+
