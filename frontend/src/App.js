@@ -1,8 +1,6 @@
 import React from "react";
 import { fetchAllHotels } from "./RestClient";
 class App extends React.Component {
-  // constructor initializes component state data
-  // and binds methods
   constructor(props) {
     super(props);
     this.state = {
@@ -16,13 +14,12 @@ class App extends React.Component {
     this.setState({ hotels: data });
   }
 
-  // this is displayed on the screen
   render() {
     return (
       <div>
-        <div id="title">🏨 compare Hotels 🏨 </div>
+        <div id="title">🏨 Hotel-Check </div>
         <button id="fetcher" onClick={this.fetchDisplayData}>
-          Check out what's in store
+          compare Hotels
         </button>
         <div className="data">
           {/* generates a div for every entry */}

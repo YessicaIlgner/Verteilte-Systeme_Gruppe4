@@ -1,5 +1,5 @@
 import { check, validationResult } from "express-validator";
-import { Employee } from "../models/employees.js";
+import { Employee } from "../models/employee.js";
 
 
 //_____________________Employee___________________________________
@@ -19,7 +19,7 @@ export const getEmployeebyJob = async (req, res) => {
   }
   res.status(200).send(employee);
 };
-//soll alle Mitarbeietr mit bestimmten Nachnamen ausgeben
+//soll alle Mitarbeiter mit bestimmten Nachnamen ausgeben
 export const getEmployeeByLastname = async (req, res) => {
   let employee = await Employee.find({ last_Name: req.query.last_Name });
   if (employee == undefined){
@@ -58,10 +58,7 @@ export const deleteEmployee = async (req, res) => {
 // diese Inhalte werden für eine erfolgreiche Erstellung eines Mitarbeiters benötigt
 export const newEmployeeValidators = [
   check("hotel_id").notEmpty().withMessage("Hotel_Id field required"),
-  check("first_Name").notEmpty().withMessage("First Name field required"),
+  check("first_Name").isLength(0,500).withMessage("First Name field required"),
   check("last_Name").notEmpty().withMessage("Last Name field required"),
   check("job").notEmpty().withMessage("Job field required"),
 ];
-
-
-

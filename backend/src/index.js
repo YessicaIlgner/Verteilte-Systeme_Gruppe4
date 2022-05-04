@@ -1,30 +1,20 @@
 import express from "express";
 import bodyParser from "body-parser";
-import hotelRoutes from "./routes/hotelRoutes.js";
 import mongoose from "mongoose";
+import swaggerUi from "swagger-ui-express";
 
-// komplette Applikation wird hier initalisiert
-// der Port auf der sie läuft ist 4000
+import hotelRoutes from "./routes/hotelRoutes.js";
+import swaggerDocs from "../swaggerDocs.js";
+
 const app = express();
 const port = 4000;
 
 app.use(bodyParser.json());
-
-//routes sind immer /hotels und alles andere wirft den fehler 404 "not Found"
+app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/hotels", hotelRoutes);
-app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/hotels/rooms", hotelRoutes);
+app.use("/hotels/employees", hotelRoutes);
 app.all("*", (req, res) => res.sendStatus(404));
-
-//routes sind immer /rooms und alles andere wirft den fehler 404 "not Found"
-app.use("/rooms", roomRoutes);
-app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.all("*", (req, res) => res.sendStatus(404));
-
-//routes sind immer /employees und alles andere wirft den fehler 404 "not Found"
-app.use("/employees", employeeRoutes);
-app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.all("*", (req, res) => res.sendStatus(404));
-
 
 mongoose.connect("mongodb://mongo:27017/test").then(() => {
   console.log("Database connected");

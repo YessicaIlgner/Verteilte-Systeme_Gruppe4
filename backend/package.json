@@ -1,29 +1,21 @@
 {
-  "name": "verteilte-systeme_gruppe4",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Ilgner, Yessica",
-  "main": "index.js",
+  "description": "",
   "type": "module",
   "scripts": {
-    "start": "nodemon -L src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YessicaIlgner/Verteilte-Systeme_Gruppe4.git"
+    "start": "nodemon -L src/index.js",
+    "d-up": "docker-compose up --build"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/YessicaIlgner/Verteilte-Systeme_Gruppe4/issues"
-  },
-  "homepage": "https://github.com/YessicaIlgner/Verteilte-Systeme_Gruppe4#readme",
   "dependencies": {
-    "express": "^4.17.3",
+    "express": "^4.18.1",
     "express-validator": "^6.14.0",
-    "mongoose": "^6.2.9",
-    "node-fetch": "^3.2.3",
-    "nodemon": "^2.0.15",
-    "start": "^5.1.0",
+    "mongoose": "^6.3.2",
     "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

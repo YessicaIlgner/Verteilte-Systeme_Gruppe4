@@ -57,10 +57,8 @@ export const deleteRoom = async (req, res) => {
   
   
   // diese Inhalte werden für eine erfolgreiche Erstellung eines Raumes benötigt
-  export const newHRoomValidators = [
+  export const newRoomValidators = [
     check("hotel_id").notEmpty().withMessage("Hotel_Id field required"),
-    check("type").notEmpty().withMessage("Type field required"),
+    check("type").isLength(0,500).withMessage("Type field required"),
     check("price").notEmpty().withMessage("Price field required"),
   ];
-  
-  

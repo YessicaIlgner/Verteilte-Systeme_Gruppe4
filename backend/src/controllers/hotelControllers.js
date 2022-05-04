@@ -61,19 +61,7 @@ export const deleteHotel = async (req, res) => {
 
 // diese Inhalte werden für eine erfolgreiche Erstellung eines Hotels benötigt
 export const newHotelValidators = [
-  check("name").notEmpty().withMessage("Name field required"),
+  check("name").isLength(0,500).withMessage("Name field required"),
   check("city").notEmpty().withMessage("City field required"),
   check("stars").notEmpty().withMessage("Stars field required"),
 ];
-
-
-
-
-
-
-
-
-
-
-
-

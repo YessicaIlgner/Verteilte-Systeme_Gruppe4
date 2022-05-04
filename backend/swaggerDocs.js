@@ -1,955 +1,860 @@
 const swaggerDocs = {
-    swagger: "2.0",
-    info: {
-      version: "1.0.0",
-      title: "REST API for a simple Hotel Service",
+  swagger: "2.0",
+  info: {
+      version: "1.2.3",
+      title: "Example REST API Hotel Service",
       description: "API for hotels",
       license: {
-        name: "MIT",
-        url: "https://opensource.org/licenses/MIT",
-      },
-    },
-    host: "localhost:4000",
-    basePath: "/hotels",
-    tags: [
+          name: "MIT",
+          url: "https://opensource.org/licenses/MIT"
+      }
+  },
+  host: "localhost:4000",
+  tags: [
       {
-        name: "Hotels",
-        description: "hotels in the database",
+          name: "Hotels",
+          description: "Hotels in the database"
       },
-    ],
-    consumes: ["application/json"],
-    produces: ["application/json"],
-    //___________________________HOTEL_______________________________
-    paths: {
-      "/": {
-        get: {
-          tags: ["Hotels"],
-          summary: "Get all hotels in the system",
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            404: {
-              description: "Hotel Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel",
-                    },
-                  },
-                },
-              }
-          },
-        },
+      {
+          name: "Rooms",
+          description: "Rooms in the database"
       },
-      "/search": {
-        get: {
-          tags: ["Hotels"],
-          summary: "Get a specific hotel by name",
-          parameters: [
-            {
-              name: "name",
-              in: "path",
-              description: "Name of the hotel searched for",
-              schema: {
-                $ref: "#/definitions/Hotel",
-              },
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            404: {
-            description: "Hotel Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel",
-                    },
-                  },
-                },
-              }
-          },
-        },
-      },
-      "/search": {
-        get: {
-          tags: ["Hotels"],
-          summary: "Get a specific hotel by city",
-          parameters: [
-            {
-              name: "city",
-              in: "path",
-              description: "City of the hotel searched for",
-              schema: {
-                $ref: "#/definitions/Hotel",
-              },
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            404: {
-              description: "Hotel Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel",
-                    },
-                  },
-                },
-              }
-          },
-        },
-      },
-      "/add": {
-        post: {
-          tags: ["Hotels"],
-          summary: "Add a new hotel",
-          parameters: [
-            {
-              name: "hotel",
-              in: "body",
-              description: "Hotel to be added",
-              schema: {
-                $ref: "#/definitions/Hotel",
-              },
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            404: {
-              description: "Hotel Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel",
-                    },
-                  },
-                },
-              }
-          },
-        },
-      },
-    },
-    definitions: {
-      Hotel: {
-        required: ["name", "city", "stars"],
-        properties: {
-          _id: {
-            type: "string",
-            uniqueItems: true,
-          },
-          name: {
-            type: "string",
-          },
-          city: {
-            type: "string",
-          },
-          stars: {
-            type: "integer",
-          },
-          rooms: {
-            type: "integer",
-          },
-          restaurant: {
-            type: "boolean",
-          },
-        },
-      },
-    },
-      "/change": {
-        put: {
-          tags: ["Hotels"],
-          summary: "Change a hotel",
-          parameters: [
-            {
-              name: "stars", 
-              in: "path", 
-              schema: {
-                $ref: "#/definitions/Hotel", 
-              },
-              required: true,
-              description: "Stars of hotel to be updated", 
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            404: {
-              description: "Hotel Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel",
-                    },
-                  },
-                },
-              }
-          },
-        },
-      },
-      "/delte": {
-        delete: {
-          tags: ["Hotels"],
-          summary: "delete a  hotel",
-          parameters: [
-            {
-              name: "name",
-              in: "path",
-              schema: {
-                $ref: "#/definitions/Hotel",
-              },
-              required: true, 
-              description: "Deleting a specific Hotel", 
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            404: {
-              description: "Hotel Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel",
-                    },
-                  },
-                },
-              }
-          },
-        },
-      },
-    //___________________________________ROOM_____________________________
-    paths: {
-        "/": {
+      {
+          name: "Employees",
+          description: "Employees in the database"
+      }
+  ],
+  consumes: ["application/json"],
+  produces: ["application/json"],
+  paths: {
+      "/Hotel": {
           get: {
-            tags: ["Rooms"],
-            summary: "Get all rooms in the system",
-            responses: {
-              200: {
-                description: "OK",
-                content: {
-                  "application/json": {
-                    schema: {
-                    $ref: "#/definitions/Hotel/Room",
-                    },
+              tags: ["Hotels"],
+              summary: "Get all hotels in the system",
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  }, 
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
                   },
-                },
-              },
-              404: {
-                description: "Room Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Room",
-                    },
-                  },
-                },
-              },
-              500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Room",
-                    },
-                  },
-                },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  }
               }
-            },
-          },
-        },
-        "/search": {
+          }
+      },
+      "Hotel/search/{name}": {
           get: {
-            tags: ["Rooms"],
-            summary: "Get a specific rooms by hotel",
-            parameters: [
-              {
-                name: "hotel_id",
-                in: "path",
-                description: "Hotel_id of the room searched for",
-                schema: {
-                    $ref: "#/definitions/Hotel/Room",
-                },
-              },
-            ],
-            responses: {
-              200: {
-                description: "OK",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Room",
-                    },
+              tags: ["Hotels"],
+              summary: "Get a specific hotel by name",
+              parameters: [
+                  {
+                      name: "name",
+                      in: "path",
+                      description: "Name of the hotel searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
                   },
-                },
-              },
-              404: {
-                description: "Room Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Room",
-                    },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
                   },
-                },
-              },
-              500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Room",
-                    },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
                   },
-                },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  }
               }
-            },
-          },
-        },
-        "/search": {
-            get: {
+          }
+      },
+      "Hotel/search/{city}": {
+          get: {
+              tags: ["Hotels"],
+              summary: "Get a specific hotel by city",
+              parameters: [
+                  {
+                      name: "city",
+                      in: "path",
+                      description: "City of the hotel searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  }
+              }
+          }
+      },
+      "/Hotel/add": {
+          post: {
+              tags: ["Hotels"],
+              summary: "Add a new hotel",
+              parameters: [
+                  {
+                      name: "Hotel",
+                      in: "body",
+                      description: "Hotel to be added",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+              ],
+              responses: {
+                  201: {
+                      description: "Created",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  }
+              }
+          }
+      },
+      "/Hotel/change/{name}": {
+          put: {
+              tags: ["Hotels"],
+              summary: "Change a specific Hotel by number",
+              parameters: [
+                  {
+                      name: "name",
+                      in: "path",
+                      description: "Name of the hotel searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  {
+                      name: "Hotel",
+                      in: "body",
+                      description: "Hotel will be changed",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  }
+              }
+          }
+      },
+      "/Hotel/delete/{name}": {
+          delete: {
+              tags: ["Hotels"],
+              summary: "Delete a specific hotel",
+              parameters: [
+                  {
+                      name: "name",
+                      in: "path",
+                      description: "Name of the hotel searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel"
+                      }
+                  }
+              }
+          }
+      },
+      "/Room": {
+          get: {
               tags: ["Rooms"],
-              summary: "Get a specific rooms by availability",
-              parameters: [
-                {
-                  name: "availability",
-                  in: "path",
-                  description: "Availability of the room searched for",
-                  schema: {
-                      $ref: "#/definitions/Hotel/Room",
+              summary: "Get all Rooms in the system",
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  }
+              }
+          }
+      },
+      "/Room/search/{hotel_id}": {
+          get: {
+              tags: ["Rooms"],
+              summary: "Get all rooms in a specific hotel",
+              parameters: [
+                  {
+                      name: "hotel_id",
+                      in: "path",
+                      description: "Hotel_id of the Hotel where Rooms searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
               ],
               responses: {
-                200: {
-                  description: "OK",
-                  content: {
-                    "application/json": {
+                  200: {
+                      description: "OK",
                       schema: {
-                          $ref: "#/definitions/Hotel/Room",
-                      },
-                    },
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
-                404: {
-                  description: "Room Not found",
-                  content: {
-                    "application/json": {
+                  400: {
+                      description: "Bad Request",
                       schema: {
-                          $ref: "#/definitions/Hotel/Room",
-                      },
-                    },
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
-                500: {
-                    description: "Server Not found",
-                    content: {
-                      "application/json": {
-                        schema: {
-                          $ref: "#/definitions/Hotel/Room",
-                        },
-                      },
-                    },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   }
-              },
-            },
-          },
-        "/add": {
-          post: {
-            tags: ["Rooms"],
-            summary: "Add a new room",
-            parameters: [
-              {
-                name: "room",
-                in: "body",
-                description: "Room to be added",
-                schema: {
-                    $ref: "#/definitions/Hotel/Room",
-                },
-              },
-            ],
-            responses: {
-              200: {
-                description: "OK",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Room",
-                    },
-                  },
-                },
-              },
-              404: {
-                description: "Room Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Room",
-                    },
-                  },
-                },
-              },
-              500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Room",
-                    },
-                  },
-                },
               }
-            },
-          },
-        },
+          }
       },
-      definitions: {
-        Room: {
-          required: ["hote_id", "type", "price"],
-          properties: {
-            _id: {
-              type: "string",
-              uniqueItems: true,
-            },
-            hotel_id: {
-              type: "string",
-            },
-            type: {
-              type: "string",
-            },
-            size: {
-              type: "string",
-            },
-            price: {
-              type: "integer",
-            },
-            availability: {
-                type: "integer",
-              },
-            balcony: {
-              type: "boolean",
-            },
-          },
-        },
-      },
-      "/change": {
-        put: {
-          tags: ["Rooms"],
-          summary: "Change a room",
-          parameters: [
-            {
-              name: "price", 
-              in: "path", 
-              schema: {
-                $ref: "#/definitions/Hotel/Room", 
-              },
-              required: true,
-              description: "Price of room to be updated", 
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Room",
-                  },
-                },
-              },
-            },
-            404: {
-              description: "Room Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Room",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Room",
-                    },
-                  },
-                },
-              }
-          },
-        },
-      },
-      "/delte": {
-        delete: {
-          tags: ["Rooms"],
-          summary: "delete a  room",
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              schema: {
-                $ref: "#/definitions/Hotel/Room",
-              },
-              required: true, 
-              description: "Deleting a specific Room", 
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Room",
-                  },
-                },
-              },
-            },
-            404: {
-              description: "Room Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Room",
-                  },
-                },
-              },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Room",
-                    },
-                  },
-                },
-              }
-          },
-        },
-      },
-      //___________________________________EMPLOYEE_____________________________
-      paths: {
-        "/": {
+      "/Room/search/{availability}": {
           get: {
-            tags: ["Employees"],
-            summary: "Get all employees in the system",
-            responses: {
-              200: {
-                description: "OK",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Employee",
-                    },
-                  },
-                },
-              },
-              404: {
-                description: "Employee Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Employee",
-                    },
-                  },
-                },
-              },
-              500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Employee",
-                    },
-                  },
-                },
-              }
-            },
-          },
-        },
-        "/search": {
-          get: {
-            tags: ["Employee"],
-            summary: "Get a specific employee by job",
-            parameters: [
-              {
-                name: "job",
-                in: "path",
-                description: "Job of the employee searched for",
-                schema: {
-                    $ref: "#/definitions/Hotel/Employee",
-                },
-              },
-            ],
-            responses: {
-              200: {
-                description: "OK",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Employee",
-                    },
-                  },
-                },
-              },
-              404: {
-                description: "Employee Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Employee",
-                    },
-                  },
-                },
-              },
-              500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Employee",
-                    },
-                  },
-                },
-              }
-            },
-          },
-        },
-        "/search": {
-            get: {
-              tags: ["Employee"],
-              summary: "Get a specific employee by lastname",
+              tags: ["Rooms"],
+              summary: "Get all rooms in a specific hotel",
               parameters: [
-                {
-                  name: "lastname",
-                  in: "path",
-                  description: "Lastname of the employee searched for",
-                  schema: {
-                    $ref: "#/definitions/Hotel/Employee",
+                  {
+                      name: "availability",
+                      in: "path",
+                      description: "Availability of the Hotel where Rooms searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
               ],
               responses: {
-                200: {
-                  description: "OK",
-                  content: {
-                    "application/json": {
+                  200: {
+                      description: "OK",
                       schema: {
-                        $ref: "#/definitions/Hotel/Employee",
-                      },
-                    },
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
-                404: {
-                  description: "Employee Not found",
-                  content: {
-                    "application/json": {
+                  400: {
+                      description: "Bad Request",
                       schema: {
-                        $ref: "#/definitions/Hotel/Employee",
-                      },
-                    },
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
-                500: {
-                    description: "Server Not found",
-                    content: {
-                      "application/json": {
-                        schema: {
-                          $ref: "#/definitions/Hotel/Employee",
-                        },
-                      },
-                    },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   }
-              },
-            },
-          },
-        "/add": {
+              }
+          }
+      },
+      "/Room/add": {
           post: {
-            tags: ["Employee"],
-            summary: "Add a new employee",
-            parameters: [
-              {
-                name: "room",
-                in: "body",
-                description: "Room to be added",
-                schema: {
-                    $ref: "#/definitions/Hotel/Employee",
-                },
-              },
-            ],
-            responses: {
-              200: {
-                description: "OK",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Employee",
-                    },
+              tags: ["Rooms"],
+              summary: "Add a new Room",
+              parameters: [
+                  {
+                      name: "Room",
+                      in: "body",
+                      description: "Room to be added",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
-              },
-              404: {
-                description: "Employee Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Employee",
-                    },
+              ],
+              responses: {
+                  201: {
+                      description: "Created",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
-              },
-              500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel/Employee",
-                    },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
                   },
-                },
-              },
-            },
-          },
-        },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  }
+              }
+          }
       },
-      definitions: {
-        Book: {
-          required: ["hote_id", "firstname", "lastname","job"],
+      "/Room/change/{id}": {
+          put: {
+              tags: ["Rooms"],
+              summary: "Change a specific Room by id",
+              parameters: [
+                  {
+                      name: "id",
+                      in: "path",
+                      description: "ID of the Room searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  {
+                      name: "Room",
+                      in: "body",
+                      description: "Room will be changed",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  }
+              }
+          }
+      },
+      "/Room/delete/{id}": {
+          delete: {
+              tags: ["Rooms"],
+              summary: "Delete a specific Room",
+              parameters: [
+                  {
+                      name: "id",
+                      in: "path",
+                      description: "ID of the Room searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  404: {
+                      description: "Hotel Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Room"
+                      }
+                  }
+              }
+          }
+      },
+      "/Employee": {
+          get: {
+              tags: ["Employees"],
+              summary: "Get all Employees in the system",
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  404: {
+                      description: "Employee Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  }
+              }
+          }
+      },
+      "/Employee/{job}": {
+          get: {
+              tags: ["Employees"],
+              summary: "Get a specific Employee by job",
+              parameters: [
+                  {
+                      name: "job",
+                      in: "path",
+                      description: "Job of the Employee searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  404: {
+                      description: "Employee Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  }
+              }
+          }
+      },
+      "/Employee/{lastname}": {
+          get: {
+              tags: ["Employees"],
+              summary: "Get a specific Employee by lastname",
+              parameters: [
+                  {
+                      name: "lastname",
+                      in: "path",
+                      description: "Lastname of the Employee searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  404: {
+                      description: "Employee Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  }
+              }
+          }
+      },
+      "/Employee/add": {
+          post: {
+              tags: ["Employees"],
+              summary: "Add a new Employee",
+              parameters: [
+                  {
+                      name: "Employee",
+                      in: "body",
+                      description: "Employee to be added",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+              ],
+              responses: {
+                  201: {
+                      description: "Created",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  404: {
+                      description: "Employee Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  }
+              }
+          }
+      },
+      "/Employee/change/{id}": {
+          put: {
+              tags: ["Employees"],
+              summary: "Change a specific Employee by id",
+              parameters: [
+                  {
+                      name: "id",
+                      in: "path",
+                      description: "ID of the Employee searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  {
+                      name: "Employee",
+                      in: "body",
+                      description: "Employee will be changed",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  404: {
+                      description: "Employee Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  }
+              }
+          }
+      },
+      "/Employee/delete/{id}": {
+          delete: {
+              tags: ["Employees"],
+              summary: "Delete a specific Employee",
+              parameters: [
+                  {
+                      name: "id",
+                      in: "path",
+                      description: "ID of the Employee searched for",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+              ],
+              responses: {
+                  200: {
+                      description: "OK",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  400: {
+                      description: "Bad Request",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  404: {
+                      description: "Employee Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  },
+                  500: {
+                      description: "Server Not Found",
+                      schema: {
+                          $ref: "#/definitions/Hotel/Employee"
+                      }
+                  }
+              }
+          }
+      }
+  },
+  definitions: {
+      Hotel: {
+          required: [
+              "name", "city", "stars" 
+          ],
           properties: {
-            _id: {
-              type: "string",
-              uniqueItems: true,
-            },
-            hotel_id: {
-              type: "string",
-            },
-            firstname: {
-              type: "string",
-            },
-            lastname: {
-              type: "string",
-            },
-            job: {
-              type: "string",
-            },
-            work_experience: {
-                type: "integer",
+              _id: {
+                  type: "string",
+                  uniqueItems: true
               },
-          },
-        },
-      },
-      "/change": {
-        put: {
-          tags: ["Employee"],
-          summary: "Change a employee",
-          parameters: [
-            {
-              name: "job", 
-              in: "path", 
-              schema: {
-                $ref: "#/definitions/Hotel/Employee", 
+              name: {
+                  type: "string"
               },
-              required: true,
-              description: "Job of employee to be updated", 
-            },
-          ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Employee",
-                  },
-                },
+              city: {
+                  type: "string"
               },
-            },
-            404: {
-              description: "Employee Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Employee",
-                  },
-                },
+              stars: {
+                  type: "integer"
               },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                      $ref: "#/definitions/Hotel",
-                    },
-                  },
-                },
+              rooms: {
+                  type: "number"
+              },
+              restaurant : {
+                  type: "boolean"
               }
-          },
-        },
+          }
       },
-      "/delte": {
-        delete: {
-          tags: ["Employees"],
-          summary: "delete a  employee",
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              schema: {
-                $ref: "#/definitions/Hotel/Employee",
-              },
-              required: true, 
-              description: "Deleting a specific Employee", 
-            },
+      Room: {
+          required: [
+              "hotel_id", "type", "price"
           ],
-          responses: {
-            200: {
-              description: "OK",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Employee",
-                  },
-                },
+          properties: {
+              _id: {
+                  type: "string",
+                  uniqueItems: true
               },
-            },
-            404: {
-              description: "Employee Not found",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/definitions/Hotel/Employee",
-                  },
-                },
+              hotel_id: {
+                  type: "string"
               },
-            },
-            500: {
-                description: "Server Not found",
-                content: {
-                  "application/json": {
-                    schema: {
-                        $ref: "#/definitions/Hotel/Employee",
-                    },
-                  },
-                },
+              type: {
+                  type: "string"
+              },
+              size: {
+                  type: "string"
+              },
+              price: {
+                  type: "number"
+              },
+              availability: {
+                  type: "boolean"
+              },
+              balcony: {
+                  type: "boolean"
               }
-          },
-        },
+          }
       },
-  };
-  
-  export default swaggerDocs;
-  
+      Employee: {
+          required: [
+              "hotel_id", "first_name", "last_name", "job"
+          ],
+          properties: {
+              _id: {
+                  type: "string",
+                  uniqueItems: true
+              },
+              hotel_id: {
+                  type: "integer",
+              },
+              first_name: {
+                  type: "string"
+              },
+              last_name: {
+                  type: "string"
+              },
+              job: {
+                  type: "string"
+              },
+              work_experience: {
+                  type: "string"
+              }
+          }
+      }
+  }
+};
+
+export default swaggerDocs;
